@@ -7,8 +7,15 @@
 //
 
 #import "MovieListTableViewController.h"
+#import "Movie.h"
+#import "MoviewCustomViewCell.h"
+#import "MovieDetailViewController.h"
+#import "UIImageView+AFNetworking.h"
+#import "AFNetworking.h"
 
 @interface MovieListTableViewController ()
+
+@property (atomic, strong) NSArray *movieArray;
 
 @end
 
@@ -35,6 +42,7 @@
       forControlEvents:UIControlEventValueChanged];
     
     self.refreshControl = refresh;
+    [self refreshData];
     
 }
 
@@ -45,32 +53,41 @@
 }
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 10;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.movieArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+   
+    static NSString *simpleTableIdentifier = @"MovieCustomViewCell";
+    
+    MoviewCustomViewCell *cell = (MoviewCustomViewCell *)[tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil)
+    {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"MovieCustomViewCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
-    // Configure the cell...
+    // Set Title
+    cell.title.text =((Movie *)self.movieArray[indexPath.row]).title;
+    // Set Synopsis
+    cell.sysnopis.text =((Movie *)self.movieArray[indexPath.row]).synopsis;
+    // Set Cast
+    cell.cast.text = [((Movie *)self.movieArray[indexPath.row]) getFormatedCast];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:[self.movieArray[indexPath.row] getDetailedPoster]]];
+    
+    
+    [cell.poster setImageWithURLRequest:request placeholderImage:[UIImage imageNamed:@"avatar"] success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
+        cell.poster.image = image;
+        
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error) {
+        NSLog(@"Failed with error: %@", error);
+    }];
     
     return cell;
+    
 }
 
 /*
@@ -112,27 +129,68 @@
 }
 */
 
-/*
+
 #pragma mark - Table view delegate
 
 // In a xib-based application, navigation from a table can be handled in -tableView:didSelectRowAtIndexPath:
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Navigation logic may go here, for example:
-    // Create the next view controller.
-    <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-
-    // Pass the selected object to the new view controller.
+    MovieDetailViewController *movieDetail = [[MovieDetailViewController alloc] initWithNibName:@"MovieDetailViewController" bundle:nil];
     
-    // Push the view controller.
-    [self.navigationController pushViewController:detailViewController animated:YES];
+    movieDetail.currMovie = self.movieArray[indexPath.row];
+    [self.navigationController pushViewController:movieDetail animated:YES];
 }
- 
- */
 
 #pragma - Network communication
 - (void) refreshData{
+    
+    NSLog([self isNetworkAvailable] ? @"Network Available!" : @"Network not Available!");
+    
+    if (![self isNetworkAvailable]) {
+        [self.refreshControl endRefreshing];
+        return;
+    }
+    
+    // Load the movie list
+    NSString *url = @"http://api.rottentomatoes.com/api/public/v1.0/lists/movies/in_theaters.json?apikey=p2vfzyb9k8p39bazjp2cm43e";
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSDictionary *movieDictionary = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+        
+        self.movieArray = [Movie parseWithData:movieDictionary];
+        [self.tableView reloadData];
+        
+    }];
+    
+    [self.refreshControl endRefreshing];
+}
 
+- (BOOL)isNetworkAvailable{
+    CFNetDiagnosticRef dReference;
+    dReference = CFNetDiagnosticCreateWithURL (NULL, (__bridge CFURLRef)[NSURL URLWithString:@"www.apple.com"]);
+    
+    CFNetDiagnosticStatus status;
+    status = CFNetDiagnosticCopyNetworkStatusPassively (dReference, NULL);
+    
+    CFRelease (dReference);
+    
+    if ( status == kCFNetDiagnosticConnectionUp )
+    {
+        NSLog (@"Connection is Available");
+        return YES;
+    }
+    else
+    {
+        NSLog (@"Connection is down");
+        return NO;
+    }
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 130;
 }
 
 @end
