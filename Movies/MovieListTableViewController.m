@@ -12,6 +12,7 @@
 #import "MovieDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "AFNetworking.h"
+#import "UINavigationBar+UINavigationBarAlert.h"
 
 @interface MovieListTableViewController ()
 
@@ -42,6 +43,7 @@
       forControlEvents:UIControlEventValueChanged];
     
     self.refreshControl = refresh;
+    
     [self refreshData];
     
 }
@@ -148,6 +150,10 @@
     
     if (![self isNetworkAvailable]) {
         [self.refreshControl endRefreshing];
+        
+        [self.navigationController.navigationBar showAlertWithTitle:@"No connection available!" hideAfter:2];
+        
+        
         return;
     }
     
@@ -192,5 +198,7 @@
 {
     return 130;
 }
+
+
 
 @end

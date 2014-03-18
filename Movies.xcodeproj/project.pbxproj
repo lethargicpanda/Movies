@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B6A371294F06460A9E20C37F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 862275E2277048C38886D0C9 /* libPods.a */; };
+		E903DBCB18D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = E903DBC818D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.m */; };
+		E903DBCC18D80D9B00D4D3CE /* UINavigationBarAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = E903DBCA18D80D9B00D4D3CE /* UINavigationBarAlert.m */; };
 		E90D518918D16F130057C671 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90D518818D16F130057C671 /* Foundation.framework */; };
 		E90D518B18D16F130057C671 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90D518A18D16F130057C671 /* CoreGraphics.framework */; };
 		E90D518D18D16F130057C671 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90D518C18D16F130057C671 /* UIKit.framework */; };
@@ -20,8 +22,6 @@
 		E90D51A418D16F130057C671 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90D518C18D16F130057C671 /* UIKit.framework */; };
 		E90D51AC18D16F130057C671 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E90D51AA18D16F130057C671 /* InfoPlist.strings */; };
 		E90D51AE18D16F130057C671 /* MoviesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E90D51AD18D16F130057C671 /* MoviesTests.m */; };
-		E90D51BD18D16FA30057C671 /* MovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E90D51BB18D16FA30057C671 /* MovieListViewController.m */; };
-		E90D51BE18D16FA30057C671 /* MovieListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E90D51BC18D16FA30057C671 /* MovieListViewController.xib */; };
 		E90D51C218D2994B0057C671 /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = E90D51C118D2994B0057C671 /* Movie.m */; };
 		E9C5A75D18D67AE800B8E69A /* MovieListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9C5A75B18D67AE800B8E69A /* MovieListTableViewController.m */; };
 		E9C5A75E18D67AE800B8E69A /* MovieListTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E9C5A75C18D67AE800B8E69A /* MovieListTableViewController.xib */; };
@@ -44,6 +44,10 @@
 /* Begin PBXFileReference section */
 		862275E2277048C38886D0C9 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1496503A7E54C6E8CEB6A1C /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E903DBC718D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UINavigationBar+UINavigationBarAlert.h"; path = "../../../../Downloads/UINavigationBarAlert-master/UINavigationBarAlert/UINavigationBar+UINavigationBarAlert.h"; sourceTree = "<group>"; };
+		E903DBC818D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+UINavigationBarAlert.m"; path = "../../../../Downloads/UINavigationBarAlert-master/UINavigationBarAlert/UINavigationBar+UINavigationBarAlert.m"; sourceTree = "<group>"; };
+		E903DBC918D80D9B00D4D3CE /* UINavigationBarAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UINavigationBarAlert.h; path = "../../../../Downloads/UINavigationBarAlert-master/UINavigationBarAlert/UINavigationBarAlert.h"; sourceTree = "<group>"; };
+		E903DBCA18D80D9B00D4D3CE /* UINavigationBarAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UINavigationBarAlert.m; path = "../../../../Downloads/UINavigationBarAlert-master/UINavigationBarAlert/UINavigationBarAlert.m"; sourceTree = "<group>"; };
 		E90D518518D16F130057C671 /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90D518818D16F130057C671 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E90D518A18D16F130057C671 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -60,9 +64,6 @@
 		E90D51A918D16F130057C671 /* MoviesTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MoviesTests-Info.plist"; sourceTree = "<group>"; };
 		E90D51AB18D16F130057C671 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E90D51AD18D16F130057C671 /* MoviesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesTests.m; sourceTree = "<group>"; };
-		E90D51BA18D16FA30057C671 /* MovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListViewController.h; sourceTree = "<group>"; };
-		E90D51BB18D16FA30057C671 /* MovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieListViewController.m; sourceTree = "<group>"; };
-		E90D51BC18D16FA30057C671 /* MovieListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieListViewController.xib; sourceTree = "<group>"; };
 		E90D51C018D2994B0057C671 /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		E90D51C118D2994B0057C671 /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		E9C5A75A18D67AE800B8E69A /* MovieListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieListTableViewController.h; sourceTree = "<group>"; };
@@ -136,14 +137,15 @@
 		E90D518E18D16F130057C671 /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				E903DBC718D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.h */,
+				E903DBC818D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.m */,
+				E903DBC918D80D9B00D4D3CE /* UINavigationBarAlert.h */,
+				E903DBCA18D80D9B00D4D3CE /* UINavigationBarAlert.m */,
 				E90D51BF18D299070057C671 /* Models */,
 				E90D519718D16F130057C671 /* AppDelegate.h */,
 				E90D519818D16F130057C671 /* AppDelegate.m */,
 				E90D519A18D16F130057C671 /* Images.xcassets */,
 				E90D518F18D16F130057C671 /* Supporting Files */,
-				E90D51BA18D16FA30057C671 /* MovieListViewController.h */,
-				E90D51BB18D16FA30057C671 /* MovieListViewController.m */,
-				E90D51BC18D16FA30057C671 /* MovieListViewController.xib */,
 				E9EE909118D4E91600DC18D8 /* MoviewCustomViewCell.h */,
 				E9EE909218D4E91600DC18D8 /* MoviewCustomViewCell.m */,
 				E9EE909418D4E94100DC18D8 /* MovieCustomViewCell.xib */,
@@ -276,7 +278,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9EE909A18D5356C00DC18D8 /* MovieDetailViewController.xib in Resources */,
-				E90D51BE18D16FA30057C671 /* MovieListViewController.xib in Resources */,
 				E90D519318D16F130057C671 /* InfoPlist.strings in Resources */,
 				E9EE909518D4E94100DC18D8 /* MovieCustomViewCell.xib in Resources */,
 				E9C5A75E18D67AE800B8E69A /* MovieListTableViewController.xib in Resources */,
@@ -332,9 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E903DBCC18D80D9B00D4D3CE /* UINavigationBarAlert.m in Sources */,
 				E9EE909918D5356C00DC18D8 /* MovieDetailViewController.m in Sources */,
 				E90D519918D16F130057C671 /* AppDelegate.m in Sources */,
-				E90D51BD18D16FA30057C671 /* MovieListViewController.m in Sources */,
+				E903DBCB18D80D9B00D4D3CE /* UINavigationBar+UINavigationBarAlert.m in Sources */,
 				E90D51C218D2994B0057C671 /* Movie.m in Sources */,
 				E9EE909318D4E91600DC18D8 /* MoviewCustomViewCell.m in Sources */,
 				E9C5A75D18D67AE800B8E69A /* MovieListTableViewController.m in Sources */,

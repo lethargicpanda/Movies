@@ -32,7 +32,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+ 
+    UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close" style:UIBarButtonItemStylePlain target:self action:@selector(closeClicked:)];
+    self.navigationItem.rightBarButtonItem = closeButton;
     
+    self.title = self.currMovie.title;
     self.synopsisView.text = self.currMovie.synopsis;
     self.castView.text = [self.currMovie getFormatedCast];
     
@@ -50,6 +54,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (IBAction)closeClicked:(id)sender {
+        [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
